@@ -3,8 +3,8 @@ Sample Agent Package
 """
 
 __version__ = "0.1.0"
-__author__ = "Your Name"
-__email__ = "your.email@example.com"
+__author__ = "Muhammad Bilal Khan"
+__email__ = "drmbilal172@gmail.com"
 
 import os
 import uvicorn
@@ -15,11 +15,7 @@ from .agents import (
     safety_agent,
     triage_agent,
     AnalysisOutput,
-    ContentOutput,
-    ContentCreatorAgent,
-    SocialMediaManagerAgent,
-    AnalyticsAgent,
-    EngagementAgent
+    ContentOutput
 )
 from .api import app
 
@@ -33,11 +29,7 @@ __all__ = [
     'triage_agent',
     'AnalysisOutput',
     'ContentOutput',
-    'app',
-    'ContentCreatorAgent',
-    'SocialMediaManagerAgent',
-    'AnalyticsAgent',
-    'EngagementAgent'
+    'app'
 ]
 
 def main() -> None:
