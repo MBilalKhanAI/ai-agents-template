@@ -1,8 +1,10 @@
 """
-Sample Agent package.
-
-This package provides a template for using OpenAI Agents SDK with FastAPI integration.
+Sample Agent Package
 """
+
+__version__ = "0.1.0"
+__author__ = "Your Name"
+__email__ = "your.email@example.com"
 
 import os
 import uvicorn
@@ -13,14 +15,17 @@ from .agents import (
     safety_agent,
     triage_agent,
     AnalysisOutput,
-    ContentOutput
+    ContentOutput,
+    ContentCreatorAgent,
+    SocialMediaManagerAgent,
+    AnalyticsAgent,
+    EngagementAgent
 )
 from .api import app
 
 # Load environment variables
 load_dotenv()
 
-__version__ = "0.1.0"
 __all__ = [
     'analysis_agent',
     'content_agent',
@@ -28,7 +33,11 @@ __all__ = [
     'triage_agent',
     'AnalysisOutput',
     'ContentOutput',
-    'app'
+    'app',
+    'ContentCreatorAgent',
+    'SocialMediaManagerAgent',
+    'AnalyticsAgent',
+    'EngagementAgent'
 ]
 
 def main() -> None:

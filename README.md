@@ -1,94 +1,118 @@
-# Sample Agent with OpenAI Agents SDK
+# Sample Agent
 
-A template project demonstrating the use of OpenAI Agents SDK with FastAPI integration. This project showcases various features of the SDK including handoffs, guardrails, and function tools.
+A sample agent implementation using OpenAI Agents SDK, featuring multiple specialized agents for content creation, social media management, analytics, and engagement.
 
 ## Features
 
-- Multiple specialized agents (Analysis, Content, Safety, Triage)
-- Handoff capabilities between agents
-- Content safety guardrails
-- Function tools for sentiment analysis and safety checks
-- FastAPI integration for easy API access
-- Comprehensive error handling and logging
+- **Content Creator Agent**: Generates engaging content for social media platforms
+- **Social Media Manager Agent**: Manages and schedules social media posts
+- **Analytics Agent**: Analyzes social media metrics and generates insights
+- **Engagement Agent**: Monitors and responds to social media interactions
+- **FastAPI Integration**: RESTful API endpoints for agent interactions
+- **Environment Configuration**: Easy configuration through `.env` file
+- **Development Tools**: Includes testing and code quality tools
 
-## Setup
+## Installation
 
-1. Create a virtual environment:
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/sample_agent.git
+cd sample_agent
+```
+
+2. Create and activate a virtual environment:
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ```
 
-2. Install dependencies:
+3. Install the package in development mode:
 ```bash
 pip install -e .
 ```
 
-3. Set up environment variables:
-```bash
-export OPENAI_API_KEY=your_api_key_here
+4. Create a `.env` file with your configuration:
+```env
+OPENAI_API_KEY=your_api_key_here
+API_HOST=0.0.0.0
+API_PORT=8000
+DEBUG=True
 ```
 
-## Running the API
+## Usage
 
-Start the FastAPI server:
+### Running the API Server
+
 ```bash
-uvicorn sample_agent.api:app --reload
+python -m sample_agent
 ```
 
-The API will be available at `http://localhost:8000`
+The server will start at `http://localhost:8000`. You can access the API documentation at `http://localhost:8000/docs`.
 
-## API Endpoints
+### API Endpoints
 
-- `POST /analyze`: Analyze content using the analysis agent
-- `POST /generate`: Generate content using the content agent
-- `POST /check-safety`: Check content safety using the safety agent
-- `POST /triage`: Route request to appropriate agent using triage agent
+- `POST /api/content/create`: Generate content
+- `POST /api/social/schedule`: Schedule social media posts
+- `POST /api/analytics/analyze`: Analyze social media metrics
+- `POST /api/engagement/monitor`: Monitor social media engagement
 - `GET /health`: Health check endpoint
 
-## Example Usage
+### Example API Usage
 
 ```python
 import requests
 
-# Analyze content
-response = requests.post(
-    "http://localhost:8000/analyze",
-    json={
-        "input_text": "Analyze this text for insights",
-        "parameters": {}
-    }
-)
-print(response.json())
-
 # Generate content
 response = requests.post(
-    "http://localhost:8000/generate",
+    "http://localhost:8000/api/content/create",
     json={
-        "input_text": "Generate a blog post about AI",
-        "parameters": {}
+        "topic": "AI in Healthcare",
+        "platform": "twitter",
+        "tone": "professional"
+    }
+)
+print(response.json())
+
+# Analyze metrics
+response = requests.post(
+    "http://localhost:8000/api/analytics/analyze",
+    json={
+        "platform": "twitter",
+        "metrics": ["engagement", "reach", "impressions"]
     }
 )
 print(response.json())
 ```
 
-## Project Structure
+## Development
 
+### Running Tests
+
+```bash
+pytest
 ```
-sample_agent/
-├── src/
-│   └── sample_agent/
-│       ├── __init__.py
-│       ├── agents.py      # Agent definitions
-│       └── api.py         # FastAPI application
-├── pyproject.toml         # Project dependencies
-└── README.md             # This file
+
+### Code Quality
+
+```bash
+# Format code
+black .
+
+# Sort imports
+isort .
+
+# Lint code
+flake8
 ```
 
 ## Contributing
 
-Feel free to fork this repository and use it as a template for your own projects. The code is designed to be easily extensible and customizable.
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
 ## License
 
-MIT License
+This project is licensed under the MIT License - see the LICENSE file for details.
