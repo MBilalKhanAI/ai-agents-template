@@ -1,0 +1,23 @@
+[project]
+name = "sample_agent"
+version = "0.1.0"
+description = "A sample agent using OpenAI Agents SDK with FastAPI integration"
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+dependencies = [
+    "openai-agents<=0.0.13",
+    "fastapi>=0.68.0",
+    "uvicorn>=0.15.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=0.19.0",
+    "requests>=2.31.0"
+]
+requires-python = ">=3.9"
+
+[project.scripts]
+sample-agent = "sample_agent:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
